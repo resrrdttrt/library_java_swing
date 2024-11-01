@@ -223,7 +223,9 @@ public class QLPhieuMuonBUS {
     public int getSoLuongSachMuon(){
         int res = 0;
         for (QLPhieuMuonDTO e : arrMuonTra){
-            res += e.getIDSach().size();
+            if (e.getIDSach() != null) { 
+                res += e.getIDSach().size();
+            }
         }
         System.out.println(""+arrMuonTra.size());
         return res;

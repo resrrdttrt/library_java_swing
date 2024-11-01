@@ -222,7 +222,9 @@ public class ThongKe {
         ArrayList<QLPhieuMuonDTO> phieumuon = new QLPhieuMuonBUS(0).getArrMuonTra();
         int sum = 0;
         for (QLPhieuMuonDTO e : phieumuon){
-            sum += e.getIDSach().size();
+            if (e.getIDSach() != null) { 
+                sum += e.getIDSach().size();
+            }
         }
         return sum;
     }
