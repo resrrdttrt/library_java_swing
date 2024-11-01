@@ -258,12 +258,12 @@ public class PhieuPhatModule {
     }
     
     private void ldPhat_btnMouseClicked(java.awt.event.MouseEvent evt){
-        Main_2.Module_Panel.removeAll();
-        Main_2.Module_Panel.repaint();
-        Main_2.Module_Panel.revalidate();
+        Main.Module_Panel.removeAll();
+        Main.Module_Panel.repaint();
+        Main.Module_Panel.revalidate();
         JPanel Module = new LDPhatModule().getLDPhatModule();
         Module.setBounds(0, 0, 940, 600);
-        Main_2.Module_Panel.add(Module);
+        Main.Module_Panel.add(Module);
     }
     
     private void ldPhat_btnMouseEntered(java.awt.event.MouseEvent evt){

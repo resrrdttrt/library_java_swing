@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import librarymanagementsystem.BUS.QLLoaiSachBUS;
 
-public class Main_2 extends javax.swing.JFrame {
+public class Main extends javax.swing.JFrame {
 
     int x_Mouse, y_Mouse; // For Moving Window
     int current_Module = 0;
@@ -19,14 +19,14 @@ public class Main_2 extends javax.swing.JFrame {
     //Sach_SelectionModule sach_SelectionModule = new Sach_SelectionModule();
     public static javax.swing.JPanel Module_Panel = new javax.swing.JPanel(); // về sau dùng phương thức get
 
-    public Main_2() {
+    public Main() {
         initComponents();
         setSize(1113, 763);
         setLocationRelativeTo(null);
         setBackground(new Color(0, 0, 0, 0));
     }
 
-    public Main_2(String currentUser) {
+    public Main(String currentUser) {
         this.currentUser = currentUser;
         System.out.println("Welcome " + currentUser);
         initComponents();
@@ -36,7 +36,7 @@ public class Main_2 extends javax.swing.JFrame {
     }
 
     // Cái này để Class ko cần vẽ lại. Lý do cho việc này là do tui thiết kế Constructor ngu người vl, và cũng lười sửa lại:))
-    public Main_2(int i) {
+    public Main(int i) {
 
     }
 
@@ -392,20 +392,20 @@ public class Main_2 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main_2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main_2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main_2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main_2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main_2().setVisible(true);
+                new Main().setVisible(true);
             }
         });
     }

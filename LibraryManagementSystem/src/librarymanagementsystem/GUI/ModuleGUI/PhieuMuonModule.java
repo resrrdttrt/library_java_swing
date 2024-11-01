@@ -12,7 +12,7 @@ import librarymanagementsystem.BUS.*;
 import librarymanagementsystem.GUI.*;
 
 import javax.swing.JPanel;
-import librarymanagementsystem.GUI.Main_2;
+import librarymanagementsystem.GUI.Main;
 import librarymanagementsystem.GUI.ThanhPhanGUI.ComboCheckBox;
 import librarymanagementsystem.GUI.ThemSuaGUI.ThemLoaiSachForm;
 import librarymanagementsystem.GUI.ThemSuaGUI.ThemPhieuMuonForm;
@@ -259,12 +259,12 @@ public class PhieuMuonModule {
     }
     
     private void phieuPhat_btnMouseClicked(java.awt.event.MouseEvent evt){
-        Main_2.Module_Panel.removeAll();
-        Main_2.Module_Panel.repaint();
-        Main_2.Module_Panel.revalidate();
+        Main.Module_Panel.removeAll();
+        Main.Module_Panel.repaint();
+        Main.Module_Panel.revalidate();
         JPanel Module = new PhieuPhatModule().getPhieuPhatModule();
         Module.setBounds(0, 0, 940, 600);
-        Main_2.Module_Panel.add(Module);
+        Main.Module_Panel.add(Module);
     }
     
     private void phieuPhat_btnMouseEntered(java.awt.event.MouseEvent evt){

@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 
 public class The_SelectionModule{
 
-    private Main_2 main_2 = new Main_2(0);
+    private Main main_2 = new Main(0);
     public JPanel getThe_SelectionModule() {
         initComponents();
         return jPanel1;
