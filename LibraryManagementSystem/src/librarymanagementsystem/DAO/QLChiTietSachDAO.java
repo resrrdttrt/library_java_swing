@@ -1,11 +1,11 @@
 package librarymanagementsystem.DAO;
 
-import librarymanagementsystem.Toolkit.*;
-import librarymanagementsystem.DTO.*;
-import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import librarymanagementsystem.DTO.*;
+import librarymanagementsystem.Toolkit.*;
 
 public class QLChiTietSachDAO {
     DBConnection DBChiTietSach;
@@ -15,7 +15,7 @@ public class QLChiTietSachDAO {
         ArrayList<QLChiTietSachDTO> arrChiTietSach = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM ChiTietSach";
+            String query = "SELECT * FROM chitietsach";
             ResultSet rs = DBChiTietSach.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -41,7 +41,7 @@ public class QLChiTietSachDAO {
         ArrayList<QLChiTietSachDTO> arrChiTietSach = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM ChiTietSach, LoaiSach WHERE ChiTietSach.maSach = LoaiSach.maSach";
+            String query = "SELECT * FROM chitietsach, LoaiSach WHERE chitietsach.maSach = LoaiSach.maSach";
             ResultSet rs = DBChiTietSach.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -75,7 +75,7 @@ public class QLChiTietSachDAO {
     
     public Boolean add(QLChiTietSachDTO chiTietSach){
         DBChiTietSach = new DBConnection();
-        Boolean check = DBChiTietSach.SQLUpdate("INSERT INTO chiTietSach(IDSach, maSach, tinhTrang) "
+        Boolean check = DBChiTietSach.SQLUpdate("INSERT INTO chitietsach(IDSach, maSach, tinhTrang) "
                 + "VALUES ('"
                 + chiTietSach.getIDSach()+ "','"  
                 + chiTietSach.getMaSach()+ "','"  
@@ -85,14 +85,14 @@ public class QLChiTietSachDAO {
     }
     
      public Boolean del(String IDSach){
-        Boolean check = DBChiTietSach.SQLUpdate("DELETE FROM chiTietSach WHERE chiTietSach.IDSach = '" + IDSach + "';");
+        Boolean check = DBChiTietSach.SQLUpdate("DELETE FROM chitietsach WHERE chitietsach.IDSach = '" + IDSach + "';");
         DBChiTietSach.closeConnection();
         return check;
     }
     
     public Boolean mod(QLChiTietSachDTO chiTietSach){
         DBChiTietSach = new DBConnection();
-        Boolean check = DBChiTietSach.SQLUpdate("Update chiTietSach Set "
+        Boolean check = DBChiTietSach.SQLUpdate("Update chitietsach Set "
                 + " maSach='" + chiTietSach.getMaSach()
                 + "', tinhTrang='" + chiTietSach.getTinhTrang()
                 + "' where IDSach='" + chiTietSach.getIDSach()+ "';");

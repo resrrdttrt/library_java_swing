@@ -1,12 +1,12 @@
 package librarymanagementsystem.DAO;
 
-import librarymanagementsystem.Toolkit.*;
-import librarymanagementsystem.DTO.*;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
+import librarymanagementsystem.DTO.*;
+import librarymanagementsystem.Toolkit.*;
 
 public class QLPhieuXuatDAO {
     DBConnection DBXuatKhoSach;
@@ -18,7 +18,7 @@ public class QLPhieuXuatDAO {
         try{
             HashMap<String, ArrayList <String> > hashmap = new HashMap<String, ArrayList <String> >();
             HashMap<String, ArrayList <Integer> > hashmap_2 = new HashMap<String, ArrayList <Integer> >();
-            String query_maSach = "SELECT * FROM chiTietPhieuXuat";
+            String query_maSach = "SELECT * FROM chitietphieuxuat";
             ResultSet rs_maSach = DBXuatKhoSach.SQLQuery(query_maSach);
             if (rs_maSach != null){
                 while (rs_maSach.next()){
@@ -48,7 +48,7 @@ public class QLPhieuXuatDAO {
                 }
             }
             
-            String query = "SELECT * FROM PhieuXuat";
+            String query = "SELECT * FROM phieuxuat";
             ResultSet rs = DBXuatKhoSach.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -77,7 +77,7 @@ public class QLPhieuXuatDAO {
     
     public Boolean add(QLPhieuXuatDTO xuatKho){
         DBXuatKhoSach = new DBConnection();
-        Boolean check1 = DBXuatKhoSach.SQLUpdate("INSERT INTO PhieuXuat(maXuat, ngayXuat, maNhanVien, tongSoLuong) "
+        Boolean check1 = DBXuatKhoSach.SQLUpdate("INSERT INTO phieuxuat(maXuat, ngayXuat, maNhanVien, tongSoLuong) "
                 + "VALUES ('"
                 + xuatKho.getMaXuat()+ "','"     
                 + xuatKho.getNgayXuat()+ "','"     
@@ -86,7 +86,7 @@ public class QLPhieuXuatDAO {
         
         Boolean check2 = true;
         for (int i=0; i<xuatKho.getMaSach().size(); i++){
-            Boolean check = DBXuatKhoSach.SQLUpdate("INSERT INTO ChiTietPhieuXuat(maXuat, maSach, soLuong) "
+            Boolean check = DBXuatKhoSach.SQLUpdate("INSERT INTO chitietphieuxuat(maXuat, maSach, soLuong) "
                     + "VALUES ('"
                     + xuatKho.getMaXuat()+ "','"     
                     + xuatKho.getMaSach().get(i)+ "',"   
@@ -101,7 +101,7 @@ public class QLPhieuXuatDAO {
     
     public Boolean add(String maXuat, String ngayXuat, ArrayList <String> maSach, ArrayList <Integer> soLuong, String maNhanVien, int tongSoLuong){
         DBXuatKhoSach = new DBConnection();
-        Boolean check1 = DBXuatKhoSach.SQLUpdate("INSERT INTO PhieuXuat(maXuat, ngayXuat, maNhanVien, tongSoLuong) "
+        Boolean check1 = DBXuatKhoSach.SQLUpdate("INSERT INTO phieuxuat(maXuat, ngayXuat, maNhanVien, tongSoLuong) "
                 + "VALUES ('"
                 + maXuat+ "','"
                 + ngayXuat+ "','"    
@@ -110,7 +110,7 @@ public class QLPhieuXuatDAO {
         
         Boolean check2 = true;
         for (int i=0; i<maSach.size(); i++){
-            Boolean check = DBXuatKhoSach.SQLUpdate("INSERT INTO ChiTietPhieuXuat(maXuat, maSach, soLuong) "
+            Boolean check = DBXuatKhoSach.SQLUpdate("INSERT INTO chitietphieuxuat(maXuat, maSach, soLuong) "
                     + "VALUES ('"
                     + maXuat+ "','"     
                     + maSach.get(i)+ "',"   
@@ -125,23 +125,23 @@ public class QLPhieuXuatDAO {
     
     public Boolean del(String maXuat){
         DBXuatKhoSach = new DBConnection();
-        Boolean check1 = DBXuatKhoSach.SQLUpdate("DELETE FROM PhieuXuat WHERE PhieuXuat.maXuat = '" + maXuat + "';");
-        Boolean check2 = DBXuatKhoSach.SQLUpdate("DELETE FROM ChiTietPhieuXuat WHERE ChiTietPhieuXuat.maXuat = '" + maXuat + "';");
+        Boolean check1 = DBXuatKhoSach.SQLUpdate("DELETE FROM phieuxuat WHERE phieuxuat.maXuat = '" + maXuat + "';");
+        Boolean check2 = DBXuatKhoSach.SQLUpdate("DELETE FROM chitietphieuxuat WHERE chitietphieuxuat.maXuat = '" + maXuat + "';");
         DBXuatKhoSach.closeConnection();
         return check1 && check2 && new QLKhoSachDAO().refreshDB();
     }
     
     public Boolean mod(QLPhieuXuatDTO xuatKho){
         DBXuatKhoSach = new DBConnection();
-        Boolean check1 = DBXuatKhoSach.SQLUpdate("Update PhieuXuat Set "
+        Boolean check1 = DBXuatKhoSach.SQLUpdate("Update phieuxuat Set "
                 + " ngayXuat='" + xuatKho.getNgayXuat()
                 + " maNhanVien='" + xuatKho.getMaNhanVien()
                 + " tongSoLuong='" + xuatKho.getTongSoLuong()
                 + "' where maXuat='" + xuatKho.getMaXuat()+ "';");
         
-        Boolean check2 = DBXuatKhoSach.SQLUpdate("DELETE FROM ChiTietPhieuXuat WHERE ChiTietPhieuXuat.maXuat = '" + xuatKho.getMaXuat() + "';");
+        Boolean check2 = DBXuatKhoSach.SQLUpdate("DELETE FROM chitietphieuxuat WHERE chitietphieuxuat.maXuat = '" + xuatKho.getMaXuat() + "';");
         for (int i=0; i<xuatKho.getMaSach().size(); i++){
-            Boolean check = DBXuatKhoSach.SQLUpdate("INSERT INTO ChiTietPhieuXuat(maXuat, maSach, soLuong) "
+            Boolean check = DBXuatKhoSach.SQLUpdate("INSERT INTO chitietphieuxuat(maXuat, maSach, soLuong) "
                     + "VALUES ('"
                     + xuatKho.getMaXuat()+ "','"     
                     + xuatKho.getMaSach().get(i)+ "',"   
@@ -156,15 +156,15 @@ public class QLPhieuXuatDAO {
     
     public Boolean mod(String maXuat, String ngayXuat, ArrayList <String> maSach, ArrayList <Integer> soLuong, String maNhanVien, int tongSoLuong){
         DBXuatKhoSach = new DBConnection();
-        Boolean check1 = DBXuatKhoSach.SQLUpdate("Update PhieuXuat Set "
+        Boolean check1 = DBXuatKhoSach.SQLUpdate("Update phieuxuat Set "
                 + " ngayXuat='" + ngayXuat
                 + " maNhanVien='" + maNhanVien
                 + " tongSoLuong='" + tongSoLuong
                 + "' where maXuat='" + maXuat+ "';");
         
-        Boolean check2 = DBXuatKhoSach.SQLUpdate("DELETE FROM ChiTietPhieuXuat WHERE ChiTietPhieuXuat.maXuat = '" + maXuat + "';");
+        Boolean check2 = DBXuatKhoSach.SQLUpdate("DELETE FROM chitietphieuxuat WHERE chitietphieuxuat.maXuat = '" + maXuat + "';");
         for (int i=0; i<maSach.size(); i++){
-            Boolean check = DBXuatKhoSach.SQLUpdate("INSERT INTO ChiTietPhieuXuat(maXuat, maSach, soLuong) "
+            Boolean check = DBXuatKhoSach.SQLUpdate("INSERT INTO chitietphieuxuat(maXuat, maSach, soLuong) "
                     + "VALUES ('"
                     + maXuat+ "','"     
                     + maSach.get(i)+ "',"   

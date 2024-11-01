@@ -1,11 +1,11 @@
 package librarymanagementsystem.DAO;
 
-import librarymanagementsystem.Toolkit.*;
-import librarymanagementsystem.DTO.*;
-import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import librarymanagementsystem.DTO.*;
+import librarymanagementsystem.Toolkit.*;
 
 public class QLKhachHangDAO {
     DBConnection DBKhachHang;
@@ -15,7 +15,7 @@ public class QLKhachHangDAO {
         ArrayList<QLKhachHangDTO> arrKhachHang = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM KhachHang";
+            String query = "SELECT * FROM khachhang";
             ResultSet rs = DBKhachHang.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -41,7 +41,7 @@ public class QLKhachHangDAO {
     
     public Boolean add(QLKhachHangDTO khachHang){
         DBKhachHang = new DBConnection();
-        Boolean check = DBKhachHang.SQLUpdate("INSERT INTO KhachHang(maKhachHang, hoTen, ngaySinh, diaChi, sdt, email) "
+        Boolean check = DBKhachHang.SQLUpdate("INSERT INTO khachhang(maKhachHang, hoTen, ngaySinh, diaChi, sdt, email) "
                 + "VALUES ('"
                 + khachHang.getMaKhachHang()+ "','"  
                 + khachHang.getHoTen()+ "','"  
@@ -54,14 +54,14 @@ public class QLKhachHangDAO {
     }
     
      public Boolean del(String maKhachHang){
-        Boolean check = DBKhachHang.SQLUpdate("DELETE FROM KhachHang WHERE KhachHang.maKhachHang = '" + maKhachHang + "';");
+        Boolean check = DBKhachHang.SQLUpdate("DELETE FROM khachhang WHERE khachhang.maKhachHang = '" + maKhachHang + "';");
         DBKhachHang.closeConnection();
         return check;
     }
     
     public Boolean mod(QLKhachHangDTO khachHang){
         DBKhachHang = new DBConnection();
-        Boolean check = DBKhachHang.SQLUpdate("Update KhachHang Set "
+        Boolean check = DBKhachHang.SQLUpdate("Update khachhang Set "
                 + " hoTen='" + khachHang.getHoTen()
                 + "', ngaySinh='" + khachHang.getNgaySinh()
                 + "', diaChi='" + khachHang.getDiaChi()

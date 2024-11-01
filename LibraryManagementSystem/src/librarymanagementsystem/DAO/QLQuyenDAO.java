@@ -1,10 +1,10 @@
 package librarymanagementsystem.DAO;
-import librarymanagementsystem.Toolkit.*;
-import librarymanagementsystem.DTO.*;
-import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import librarymanagementsystem.DTO.*;
+import librarymanagementsystem.Toolkit.*;
 public class QLQuyenDAO {
     DBConnection DBQuyen;
     
@@ -36,7 +36,7 @@ public class QLQuyenDAO {
     
     public Boolean add(QLQuyenDTO quyen){
         DBQuyen = new DBConnection();
-        Boolean check = DBQuyen.SQLUpdate("INSERT INTO Quyen(maQuyen, tenQuyen, chitietQuyen) "
+        Boolean check = DBQuyen.SQLUpdate("INSERT INTO quyen(maQuyen, tenQuyen, chitietQuyen) "
                 + "VALUES ('"
                 + quyen.getMaQuyen() + "', '"
                 + quyen.getTenQuyen() + "', '"
@@ -47,14 +47,14 @@ public class QLQuyenDAO {
     
     public Boolean del(String maQuyen){
         DBQuyen = new DBConnection();
-        Boolean check = DBQuyen.SQLUpdate("DELETE FROM Quyen WHERE Quyen.maQuyen = '" + maQuyen + "'");
+        Boolean check = DBQuyen.SQLUpdate("DELETE FROM quyen WHERE quyen.maQuyen = '" + maQuyen + "'");
         DBQuyen.closeConnection();
         return check;
     }
     
     public Boolean mod(QLQuyenDTO quyen){
         DBQuyen = new DBConnection();
-        Boolean check = DBQuyen.SQLUpdate("Update Quyen Set "
+        Boolean check = DBQuyen.SQLUpdate("Update quyen Set "
                 + " tenQuyen='" + quyen.getTenQuyen()
                 + "', chitietQuyen='" + quyen.getChitietQuyen()
                 + "' where maQuyen='" + quyen.getMaQuyen() + "'");

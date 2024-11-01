@@ -1,11 +1,11 @@
 package librarymanagementsystem.DAO;
 
-import librarymanagementsystem.Toolkit.*;
-import librarymanagementsystem.DTO.*;
-import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import librarymanagementsystem.DTO.*;
+import librarymanagementsystem.Toolkit.*;
 
 public class QLAdminDAO {
     DBConnection DBAdmin;
@@ -15,7 +15,7 @@ public class QLAdminDAO {
         ArrayList<QLAdminDTO> arrAdmin = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM Admin";
+            String query = "SELECT * FROM admin";
             ResultSet rs = DBAdmin.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -39,7 +39,7 @@ public class QLAdminDAO {
     
     public Boolean add(QLAdminDTO admin){
         DBAdmin = new DBConnection();
-        Boolean check = DBAdmin.SQLUpdate("INSERT INTO Admin(tkAdmin, password_hashed, RFID_code, salt) "
+        Boolean check = DBAdmin.SQLUpdate("INSERT INTO admin(tkAdmin, password_hashed, RFID_code, salt) "
                 + "VALUES ('"
                 + admin.getTkAdmin() + "', '"
                 + admin.getPassword() + "', '"
@@ -51,14 +51,14 @@ public class QLAdminDAO {
     
     public Boolean del(String tkAdmin){
         DBAdmin = new DBConnection();
-        Boolean check = DBAdmin.SQLUpdate("DELETE FROM Admin WHERE Admin.tkAdmin = '" + tkAdmin + "'");
+        Boolean check = DBAdmin.SQLUpdate("DELETE FROM admin WHERE admin.tkAdmin = '" + tkAdmin + "'");
         DBAdmin.closeConnection();
         return check;
     }
     
     public Boolean mod(QLAdminDTO admin){
         DBAdmin = new DBConnection();
-        Boolean check = DBAdmin.SQLUpdate("Update Admin Set "
+        Boolean check = DBAdmin.SQLUpdate("Update admin Set "
                 + "', password_hashed='" + admin.getTkAdmin()
                 + "', RFID_code='" + admin.getRFID_code()
                 + " where tkAdmin='" + admin.getPassword() + "'");
@@ -68,7 +68,7 @@ public class QLAdminDAO {
     
     public Boolean mod_RFID_code(String tkAdmin, String RFID_code){
         DBAdmin = new DBConnection();
-        Boolean check = DBAdmin.SQLUpdate("Update Admin Set "
+        Boolean check = DBAdmin.SQLUpdate("Update admin Set "
                 + "', RFID_code='" + RFID_code
                 + " where tkAdmin='" + tkAdmin + "'");
         DBAdmin.closeConnection();

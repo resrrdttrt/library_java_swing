@@ -1,11 +1,11 @@
 package librarymanagementsystem.DAO;
 
-import librarymanagementsystem.Toolkit.*;
-import librarymanagementsystem.DTO.*;
-import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import librarymanagementsystem.DTO.*;
+import librarymanagementsystem.Toolkit.*;
 
 public class QLNhaCungCapDAO {
     DBConnection DBNhaCungCap;
@@ -15,7 +15,7 @@ public class QLNhaCungCapDAO {
         ArrayList<QLNhaCungCapDTO> arrNhaCungCap = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM nhaCungCap";
+            String query = "SELECT * FROM nhacungcap";
             ResultSet rs = DBNhaCungCap.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -40,7 +40,7 @@ public class QLNhaCungCapDAO {
     
     public Boolean add(QLNhaCungCapDTO nhaCungCap){
         DBNhaCungCap = new DBConnection();
-        Boolean check = DBNhaCungCap.SQLUpdate("INSERT INTO nhaCungCap(maNCC, tenNCC, sdt, email, diaChi) "
+        Boolean check = DBNhaCungCap.SQLUpdate("INSERT INTO nhacungcap(maNCC, tenNCC, sdt, email, diaChi) "
                 + "VALUES ('"
                 + nhaCungCap.getMaNCC()+ "','"  
                 + nhaCungCap.getTenNCC()+ "','"  
@@ -52,14 +52,14 @@ public class QLNhaCungCapDAO {
     }
     
      public Boolean del(String maNCC){
-        Boolean check = DBNhaCungCap.SQLUpdate("DELETE FROM nhaCungCap WHERE nhaCungCap.maNCC = '" + maNCC + "';");
+        Boolean check = DBNhaCungCap.SQLUpdate("DELETE FROM nhacungcap WHERE nhacungcap.maNCC = '" + maNCC + "';");
         DBNhaCungCap.closeConnection();
         return check;
     }
     
     public Boolean mod(QLNhaCungCapDTO nhaCungCap){
         DBNhaCungCap = new DBConnection();
-        Boolean check = DBNhaCungCap.SQLUpdate("Update nhaCungCap Set "
+        Boolean check = DBNhaCungCap.SQLUpdate("Update nhacungcap Set "
                 + " tenNCC='" + nhaCungCap.getTenNCC()
                 + "', sdt='" + nhaCungCap.getSdt()
                 + "', email='" + nhaCungCap.getEmail()

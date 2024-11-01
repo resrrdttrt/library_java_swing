@@ -43,7 +43,7 @@ public class DBConnection {
             return true;
         }
         catch (ClassNotFoundException e){
-            JOptionPane.showMessageDialog(null, "MySql Driver not found.");
+            JOptionPane.showMessageDialog(null, "Lỗi!!! Không tìm thấy MySql Driver.");
             System.err.print(e);
             return false;
         }
@@ -57,14 +57,14 @@ public class DBConnection {
             System.out.println("Connected to " + DBName);
         }
         catch (SQLException e){
-            JOptionPane.showMessageDialog(null, "Cannot connect to " + DBName);
+            JOptionPane.showMessageDialog(null, "Lỗi!!! Không thể kết nối tới " + DBName);
             System.err.println(e);
         }
     }
     
     private boolean checkConnection(){
         if (conn == null || stmt == null){
-            JOptionPane.showMessageDialog(null, "Not connected to " + DBName + ".Sign in to continue!");
+            JOptionPane.showMessageDialog(null, "Lỗi!!! Chưa thiết lập kết nối tới " + DBName + ". Vui lòng đăng nhập để thiết lập kết nối!");
             return false;
         }
         else{
@@ -76,11 +76,12 @@ public class DBConnection {
         if (checkConnection()){
             try{
                 rs = stmt.executeQuery(query);
-                System.out.println(query + " query success!");
+                System.out.println(query + " Query success!");
                 return rs;
             }
             catch (SQLException e){
-                JOptionPane.showMessageDialog(null, "Query failed");
+                JOptionPane.showMessageDialog(null, "Lỗi!!! Không thể truy vẫn dữ liệu");
+                System.out.println("Error: " + e.getMessage());
                 return null;
             }
         }
@@ -93,12 +94,12 @@ public class DBConnection {
         if (checkConnection()){
              try{
                 stmt.executeUpdate(update);
-                System.out.println(update + " update successfully!");
+                System.out.println(update + " Update success!");
                 return true;
             }
             catch (SQLException e){
                 System.err.println(e);
-                JOptionPane.showMessageDialog(null, "Update failed");
+                JOptionPane.showMessageDialog(null, "Lỗi!!! Không thể cập nhật dữ liệu");
                 return false;
             }
         }
@@ -115,10 +116,10 @@ public class DBConnection {
             if (stmt != null){
                 stmt.close();
             }
-            System.out.println("Disconnected Database.");
+            System.out.println("Disconnected to Database.");
         }
         catch (SQLException e){
-            JOptionPane.showMessageDialog(null, "Cannot disconnect to " + DBName);
+            JOptionPane.showMessageDialog(null, "Lỗi!!! Không thể đóng kết nối tới " + DBName);
         }
     }
 }

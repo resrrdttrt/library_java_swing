@@ -19,7 +19,7 @@ public class QLKhoSachDAO {
         ArrayList<QLKhoSachDTO> arrKhoSach = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM KhoSach";
+            String query = "SELECT * FROM khosach";
             ResultSet rs = DBKhoSach.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -45,7 +45,7 @@ public class QLKhoSachDAO {
         ArrayList<QLKhoSachDTO> arrKhoSach = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM KhoSach, LoaiSach Where KhoSach.maSach = LoaiSach.maSach";
+            String query = "SELECT * FROM khosach, loaisach Where khosach.maSach = loaisach.maSach";
             ResultSet rs = DBKhoSach.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -78,7 +78,7 @@ public class QLKhoSachDAO {
     
     public Boolean add(QLKhoSachDTO khoSach){
         DBKhoSach = new DBConnection();
-        Boolean check = DBKhoSach.SQLUpdate("INSERT INTO KhoSach(maSach, soLuong) "
+        Boolean check = DBKhoSach.SQLUpdate("INSERT INTO khosach(maSach, soLuong) "
                 + "VALUES ('"
                 + khoSach.getMaSach()+ "',"       
                 + khoSach.getSoLuong()+ ");");
@@ -88,14 +88,14 @@ public class QLKhoSachDAO {
     
     public Boolean del(String maSach){
         DBKhoSach = new DBConnection();
-        Boolean check = DBKhoSach.SQLUpdate("DELETE FROM KhoSach WHERE KhoSach.maSach = '" + maSach + "';");
+        Boolean check = DBKhoSach.SQLUpdate("DELETE FROM khosach WHERE khosach.maSach = '" + maSach + "';");
         DBKhoSach.closeConnection();
         return check;
     }
     
     public Boolean mod(QLKhoSachDTO khoSach){
         DBKhoSach = new DBConnection();
-        Boolean check = DBKhoSach.SQLUpdate("Update KhoSach Set "
+        Boolean check = DBKhoSach.SQLUpdate("Update khosach Set "
                 + " soLuong=" + khoSach.getSoLuong()
                 + " where maSach='" + khoSach.getMaSach()+ "';");
         DBKhoSach.closeConnection();

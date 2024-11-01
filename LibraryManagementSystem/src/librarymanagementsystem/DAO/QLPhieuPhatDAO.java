@@ -1,11 +1,11 @@
 package librarymanagementsystem.DAO;
 
-import librarymanagementsystem.Toolkit.*;
-import librarymanagementsystem.DTO.*;
-import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import librarymanagementsystem.DTO.*;
+import librarymanagementsystem.Toolkit.*;
 
 public class QLPhieuPhatDAO {
     DBConnection DBPhieuPhat;
@@ -15,7 +15,7 @@ public class QLPhieuPhatDAO {
         ArrayList<QLPhieuPhatDTO> arrPhieuPhat = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM phieuPhat";
+            String query = "SELECT * FROM phieuphat";
             ResultSet rs = DBPhieuPhat.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -39,7 +39,7 @@ public class QLPhieuPhatDAO {
     
     public Boolean add(QLPhieuPhatDTO phieuPhat){
         DBPhieuPhat = new DBConnection();
-        Boolean check = DBPhieuPhat.SQLUpdate("INSERT INTO phieuPhat(maPhieuPhat, maPhieuMuon, maLDPhat, tienPhat) "
+        Boolean check = DBPhieuPhat.SQLUpdate("INSERT INTO phieuphat(maPhieuPhat, maPhieuMuon, maLDPhat, tienPhat) "
                 + "VALUES ('"
                 + phieuPhat.getMaPhieuPhat()+ "','"  
                 + phieuPhat.getMaPhieuMuon()+ "','"  
@@ -50,14 +50,14 @@ public class QLPhieuPhatDAO {
     }
     
      public Boolean del(String maPhieuPhat){
-        Boolean check = DBPhieuPhat.SQLUpdate("DELETE FROM phieuPhat WHERE phieuPhat.maPhieuPhat = '" + maPhieuPhat + "';");
+        Boolean check = DBPhieuPhat.SQLUpdate("DELETE FROM phieuphat WHERE phieuphat.maPhieuPhat = '" + maPhieuPhat + "';");
         DBPhieuPhat.closeConnection();
         return check;
     }
     
     public Boolean mod(QLPhieuPhatDTO phieuPhat){
         DBPhieuPhat = new DBConnection();
-        Boolean check = DBPhieuPhat.SQLUpdate("Update phieuPhat Set "
+        Boolean check = DBPhieuPhat.SQLUpdate("Update phieuphat Set "
                 + " maPhieuMuon='" + phieuPhat.getMaPhieuMuon()
                 + "', maLDPhat='" + phieuPhat.getMaLDPhat()
                 + "', tienPhat=" + phieuPhat.getTienPhat()

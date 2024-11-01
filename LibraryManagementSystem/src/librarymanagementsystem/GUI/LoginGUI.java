@@ -194,7 +194,7 @@ public class LoginGUI extends JFrame{
             if (!tk.equals("")){
                 RFIDlogin.dispose();
                 current_session = tk;
-                System.out.println("Đăng Nhập Thành Công");
+                System.out.println("Login sucess");
                 System.out.println("Current Session: " + current_session);
                 //new MainGUI(current_session).setVisible(true);
                 new Main(current_session).setVisible(true);
@@ -203,7 +203,7 @@ public class LoginGUI extends JFrame{
             }
             else{
                 RFIDlogin.dispose(); // Xóa sau
-                System.out.println("Đăng Nhập thất bại");
+                System.out.println("Login failed");
             }
         }
     }
@@ -228,7 +228,7 @@ public class LoginGUI extends JFrame{
     
     public void DangNhap(){
         if (kiemTraDangNhap()){
-            System.out.println("Đăng Nhập Thành Công");
+            System.out.println("Login sucess");
             System.out.println("Current Session: " + current_session);
             //new MainGUI(current_session).setVisible(true);
             new Main(current_session).setVisible(true);
@@ -237,13 +237,13 @@ public class LoginGUI extends JFrame{
         }
         else{
             new AlertGUI(1, "Login", "Đăng Nhập Thất Bại", "Quay Lại").setVisible(true);
-            System.out.println("Đăng Nhập Thất Bại");
+            System.out.println("Login failed");
         }
     }
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {                                
         if (evt.getKeyCode() == KeyEvent.VK_ENTER){
-            System.out.println("Đăng Nhập" + "\t username: " + username_field.getText() + "\t password: " + password_field.getText());
+            System.out.println("Login" + "\t username: " + username_field.getText() + "\t password: " + password_field.getText());
             DangNhap();
         }
         else if (evt.getKeyCode() == KeyEvent.VK_TAB){
@@ -256,7 +256,7 @@ public class LoginGUI extends JFrame{
     private void username_fieldKeyPressed(java.awt.event.KeyEvent evt) {
         //System.out.println(evt.getKeyCode());
         if (evt.getKeyCode() == KeyEvent.VK_ENTER){
-            System.out.println("Đăng Nhập" + "\t username: " + username_field.getText() + "\t password: " + password_field.getText());
+            System.out.println("Login" + "\t username: " + username_field.getText() + "\t password: " + password_field.getText());
             DangNhap();
         }
         else if (evt.getKeyCode() == KeyEvent.VK_TAB){
@@ -268,7 +268,7 @@ public class LoginGUI extends JFrame{
 
     private void password_fieldKeyPressed(java.awt.event.KeyEvent evt) {                                          
         if (evt.getKeyCode() == KeyEvent.VK_ENTER){
-            System.out.println("Đăng Nhập" + "\t username: " + username_field.getText() + "\t password: " + password_field.getText());
+            System.out.println("Login" + "\t username: " + username_field.getText() + "\t password: " + password_field.getText());
             DangNhap();
         }
         else if (evt.getKeyCode() == KeyEvent.VK_TAB){

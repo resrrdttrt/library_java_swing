@@ -1,11 +1,11 @@
 package librarymanagementsystem.DAO;
 
-import librarymanagementsystem.Toolkit.*;
-import librarymanagementsystem.DTO.*;
-import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import librarymanagementsystem.DTO.*;
+import librarymanagementsystem.Toolkit.*;
 
 public class QLTheDAO {
     DBConnection DBThe;
@@ -15,7 +15,7 @@ public class QLTheDAO {
         ArrayList<QLTheDTO> arrThe = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM The";
+            String query = "SELECT * FROM the";
             ResultSet rs = DBThe.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -43,7 +43,7 @@ public class QLTheDAO {
         ArrayList<QLTheDTO> arrThe = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM The, khachHang WHERE The.makhachhang = khachHang.makhachhang";
+            String query = "SELECT * FROM the, khachHang WHERE the.makhachhang = khachHang.makhachhang";
             ResultSet rs = DBThe.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -73,7 +73,7 @@ public class QLTheDAO {
     
     public Boolean add(QLTheDTO the){
         DBThe = new DBConnection();
-        Boolean check = DBThe.SQLUpdate("INSERT INTO The(maThe, maKhachHang, ngayCap, ngayHetHan) "
+        Boolean check = DBThe.SQLUpdate("INSERT INTO the(maThe, maKhachHang, ngayCap, ngayHetHan) "
                 + "VALUES ('"
                 + the.getMaThe() + "','"     
                 + the.getMaKhachHang() + "','"   
@@ -85,7 +85,7 @@ public class QLTheDAO {
     
      public Boolean del(String maThe){
         DBThe = new DBConnection();
-        Boolean check = DBThe.SQLUpdate("DELETE FROM The WHERE The.maThe = '" + maThe + "'");
+        Boolean check = DBThe.SQLUpdate("DELETE FROM the WHERE the.maThe = '" + maThe + "'");
         DBThe.closeConnection();
         return check;
     }

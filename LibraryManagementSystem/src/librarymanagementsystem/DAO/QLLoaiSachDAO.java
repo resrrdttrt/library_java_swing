@@ -1,11 +1,11 @@
 package librarymanagementsystem.DAO;
 
-import librarymanagementsystem.Toolkit.*;
-import librarymanagementsystem.DTO.*;
-import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import librarymanagementsystem.DTO.*;
+import librarymanagementsystem.Toolkit.*;
 
 public class QLLoaiSachDAO {
     DBConnection DBSach;
@@ -15,7 +15,7 @@ public class QLLoaiSachDAO {
         ArrayList<QLLoaiSachDTO> arrSach = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM LoaiSach";
+            String query = "SELECT * FROM loaisach";
             ResultSet rs = DBSach.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -46,7 +46,7 @@ public class QLLoaiSachDAO {
     
     public Boolean add(QLLoaiSachDTO sach){
         DBSach = new DBConnection();
-        Boolean check = DBSach.SQLUpdate("INSERT INTO LoaiSach(maSach, tenSach, tenTacGia, tenNXB, namXB, theLoai, ngonNgu, tomTatNoiDung, giaTien, soTrang, hinhSach) "
+        Boolean check = DBSach.SQLUpdate("INSERT INTO loaisach(maSach, tenSach, tenTacGia, tenNXB, namXB, theLoai, ngonNgu, tomTatNoiDung, giaTien, soTrang, hinhSach) "
                 + "VALUES ('"
                 + sach.getMaSach() + "', '"
                 + sach.getTenSach() + "', '"
@@ -65,14 +65,14 @@ public class QLLoaiSachDAO {
     
     public Boolean del(String maSach){
         DBSach = new DBConnection();
-        Boolean check = DBSach.SQLUpdate("DELETE FROM LoaiSach WHERE LoaiSach.maSach = '" + maSach + "'");
+        Boolean check = DBSach.SQLUpdate("DELETE FROM loaisach WHERE loaisach.maSach = '" + maSach + "'");
         DBSach.closeConnection();
         return check;
     }
     
     public Boolean mod(QLLoaiSachDTO sach){
         DBSach = new DBConnection();
-        Boolean check = DBSach.SQLUpdate("Update LoaiSach Set "
+        Boolean check = DBSach.SQLUpdate("Update loaisach Set "
                 + " tenSach='" + sach.getTenSach()
                 + "', tenTacGia='" + sach.getTenTacGia()
                 + "', tenNXB='" + sach.getTenNXB()

@@ -1,11 +1,11 @@
 package librarymanagementsystem.DAO;
 
-import librarymanagementsystem.Toolkit.*;
-import librarymanagementsystem.DTO.*;
-import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import librarymanagementsystem.DTO.*;
+import librarymanagementsystem.Toolkit.*;
 
 public class QLLDPhatDAO {
     DBConnection DBLDPhat;
@@ -15,7 +15,7 @@ public class QLLDPhatDAO {
         ArrayList<QLLDPhatDTO> arrLDPhat = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM lyDoPhat";
+            String query = "SELECT * FROM lydophat";
             ResultSet rs = DBLDPhat.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -38,7 +38,7 @@ public class QLLDPhatDAO {
     
     public Boolean add(QLLDPhatDTO LDPhat){
         DBLDPhat = new DBConnection();
-        Boolean check = DBLDPhat.SQLUpdate("INSERT INTO lyDoPhat(maLDPhat, tenLDPhat, mucDo) "
+        Boolean check = DBLDPhat.SQLUpdate("INSERT INTO lydophat(maLDPhat, tenLDPhat, mucDo) "
                 + "VALUES ('"
                 + LDPhat.getMaLDPhat()+ "','"  
                 + LDPhat.getTenLDPhat()+ "','"  
@@ -48,14 +48,14 @@ public class QLLDPhatDAO {
     }
     
      public Boolean del(String maLDPhat){
-        Boolean check = DBLDPhat.SQLUpdate("DELETE FROM lyDoPhat WHERE lyDoPhat.maLDPhat = '" + maLDPhat + "';");
+        Boolean check = DBLDPhat.SQLUpdate("DELETE FROM lydophat WHERE lydophat.maLDPhat = '" + maLDPhat + "';");
         DBLDPhat.closeConnection();
         return check;
     }
     
     public Boolean mod(QLLDPhatDTO LDPhat){
         DBLDPhat = new DBConnection();
-        Boolean check = DBLDPhat.SQLUpdate("Update lyDoPhat Set "
+        Boolean check = DBLDPhat.SQLUpdate("Update lydophat Set "
                 + " tenLDPhat='" + LDPhat.getTenLDPhat()
                 + "', mucDo='" + LDPhat.getMucDo()
                 + "' where maLDPhat='" + LDPhat.getMaLDPhat()+ "';");
